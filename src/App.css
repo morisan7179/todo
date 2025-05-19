@@ -113,7 +113,7 @@ ul {
 .settings-icon {
   position: fixed;
   top: 16px;
-  right: 16px;
+  right: 24px;
   background: transparent;
   border: none;
   font-size: 24px;
@@ -124,5 +124,18 @@ ul {
 
 .settings-icon:hover {
   color: #ffcc00;
+}
+
+.settings-icon:hover {
+  color: #ffcc00;
+}
+
+/* ← ここに追加！ */
+@media (max-width: 600px) {
+  .settings-icon {
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+  }
 }
 

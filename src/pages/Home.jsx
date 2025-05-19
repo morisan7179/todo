@@ -43,8 +43,8 @@ function Home({ projects, setProjects }) {
     >
       ⚙
     </button>
-
-    <div>
+<div>
+    
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h2>📁 プロジェクト一覧</h2>
       </div>
