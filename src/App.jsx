@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
-import Settings from './pages/Settings'; // ← 設定画面
 
 function App() {
   const [theme, setTheme] = useState('dark'); // テーマ状態
@@ -44,15 +43,18 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home projects={projects} setProjects={setProjects} />}
+            element={
+              <Home
+                projects={projects}
+                setProjects={setProjects}
+                theme={theme}
+                setTheme={setTheme}
+              />
+            }
           />
           <Route
             path="/project/:id"
             element={<ProjectDetail projects={projects} setProjects={setProjects} />}
-          />
-          <Route
-            path="/settings"
-            element={<Settings setTheme={setTheme} />}
           />
         </Routes>
       </Router>
