@@ -75,12 +75,12 @@ function ProjectDetail({ projects, setProjects }) {
     border: 'none',
     cursor: 'pointer',
     fontSize: '16px',
-    color: 'white',
+    color: 'inherit', // ← テーマに合わせて変化
     padding: '4px'
   };
 
   return (
-    <div>
+    <div className="project-detail">
       <button className="back-button button" onClick={() => navigate('/')}>
         ← ホームに戻る
       </button>
@@ -93,6 +93,7 @@ function ProjectDetail({ projects, setProjects }) {
           <li
             key={todo.id}
             style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}
+            className="task-item"
           >
             <input
               type="checkbox"
@@ -115,12 +116,12 @@ function ProjectDetail({ projects, setProjects }) {
             ) : (
               <span
                 onClick={() => setEditingId(todo.id)}
+                className="task-text"
                 style={{
                   textDecoration: todo.done ? 'line-through' : 'none',
                   marginLeft: '8px',
                   cursor: 'pointer',
-                  flexGrow: 1,
-                  color: '#fff'
+                  flexGrow: 1
                 }}
               >
                 {todo.text}

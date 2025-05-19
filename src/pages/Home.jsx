@@ -35,33 +35,32 @@ function Home({ projects, setProjects, theme, setTheme }) {
   };
 
 return (
-  <>
+  <div className="home-container">
     <div
-  style={{
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '16px'
-  }}
->
-  <h2 style={{ margin: 0 }}>📁 プロジェクト一覧</h2>
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '16px'
+      }}
+    >
+      <h2 style={{ margin: 0 }}>📁 プロジェクト一覧</h2>
 
-  <button
-    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-    title="テーマ切り替え"
-    style={{
-      fontSize: '20px',
-      marginLeft: '12px',
-      background: 'transparent',
-      border: 'none',
-      color: 'white',
-      cursor: 'pointer'
-    }}
-  >
-    {theme === 'dark' ? '☀' : '🌙'}
-  </button>
-</div>
-
+      <button
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        title="テーマ切り替え"
+        style={{
+          fontSize: '20px',
+          marginLeft: '12px',
+          background: 'transparent',
+          border: 'none',
+          color: theme === 'light' ? 'black' : 'white',
+          cursor: 'pointer'
+        }}
+      >
+        {theme === 'dark' ? '☀' : '🌙'}
+      </button>
+    </div>
 
     <button onClick={handleAddProject} className="button">
       ＋ プロジェクト追加
@@ -79,8 +78,9 @@ return (
         />
       ))}
     </div>
-  </>
+  </div>
 );
+
 
 }
 
