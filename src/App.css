@@ -1,0 +1,128 @@
+.app {
+  font-family: sans-serif;
+  padding: 20px;
+  background: #f4f4f4;
+  min-height: 100vh;
+}
+
+.button {
+  padding: 8px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+.back-button {
+  background: #6c757d;
+  margin-bottom: 10px;
+}
+
+.back-button:hover {
+  background: #5a6268;
+}
+
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-card {
+  background: #333333;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.project-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+color: #fff;
+}
+
+.project-card p {
+  margin: 0;
+  color: #fff;
+}
+
+/* 🔻ここから追加する！*/
+.project-card button {
+  background-color: transparent;
+  color: red;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.project-card button:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.app.dark {
+  background-color: #121212;
+  color: white;
+}
+
+.app.light {
+  background-color: #f4f4f4;
+  color: black;
+}
+
+.app.blue {
+  background-color: #003366;
+  color: white;
+}
+
+.app.green {
+  background-color: #0f3d2e;
+  color: white;
+}
+
+.app.orange {
+  background-color: #874d00;
+  color: white;
+}
+
+.app.pink {
+  background-color: #6b2352;
+  color: white;
+}
+
+.settings-icon {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.settings-icon:hover {
+  color: #ffcc00;
+}
+
