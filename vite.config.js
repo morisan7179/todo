@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: '職人タスクアプリ',
-        short_name: '職人タスク',
+        name: '現場タスクアプリ',
+        short_name: '現場タスク',
         description: '職人さんが現場で使えるタスク＆見積アプリ',
         start_url: '/',
         display: 'standalone',
