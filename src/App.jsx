@@ -6,25 +6,39 @@ import ProjectDetail from './pages/ProjectDetail';
 
 function App() {
   const [theme, setTheme] = useState('dark'); // テーマ状態
+
   const [projects, setProjects] = useState([
     {
       id: 1,
       title: 'ブログ執筆',
       todos: [
-        { id: 1, text: 'タイトル決め', done: false },
+        { id: 1, text: 'タイトル決め', done: false  },
         { id: 2, text: '本文執筆', done: true },
-        { id: 3, text: '画像探し', done: false }
+        { id: 3, text: '画像探し', done: false  }
       ]
     },
     {
       id: 2,
       title: '新商品開発',
       todos: [
-        { id: 1, text: '企画書作成', done: false },
-        { id: 2, text: '市場調査', done: false }
+        { id: 1, text: '企画書作成', done: false  },
+        { id: 2, text: '市場調査', done: false  }
       ]
     }
   ]);
+
+  // ✅ 初回ロード時に保存された projects を読み込む
+  useEffect(() => {
+    const savedProjects = localStorage.getItem('projects');
+    if (savedProjects) {
+      setProjects(JSON.parse(savedProjects));
+    }
+  }, []);
+
+  // ✅ projects が変更されるたびに保存する
+  useEffect(() => {
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }, [projects]);
 
   // ✅ 保存されたテーマを読み込む（初回）
   useEffect(() => {

@@ -10,20 +10,33 @@ function ProjectDetail({ projects, setProjects }) {
   if (!project) return <p>プロジェクトが見つかりません</p>;
 
   const [editingId, setEditingId] = useState(null);
+  const [newTaskText, setNewTaskText] = useState('');
+  const [newTaskDate, setNewTaskDate] = useState('');
 
   const handleAdd = () => {
-    const text = prompt('タスクを入力してください');
-    if (text) {
+    if (newTaskText && newTaskDate) {
       const updatedProjects = projects.map(p => {
         if (p.id === projectId) {
           return {
             ...p,
-            todos: [...p.todos, { id: Date.now(), text, done: false }]
+            todos: [
+              ...p.todos,
+              {
+                id: Date.now(),
+                text: newTaskText,
+                executionDate: newTaskDate,
+                done: false,
+              },
+            ],
           };
         }
         return p;
       });
       setProjects(updatedProjects);
+      setNewTaskText('');
+      setNewTaskDate('');
+    } else {
+      alert('タスク名と実行日を入力してください');
     }
   };
 
@@ -70,12 +83,27 @@ function ProjectDetail({ projects, setProjects }) {
     setProjects(updatedProjects);
   };
 
+  const handleChangeDate = (todoId, newDate) => {
+    const updatedProjects = projects.map(p => {
+      if (p.id === projectId) {
+        return {
+          ...p,
+          todos: p.todos.map(todo =>
+            todo.id === todoId ? { ...todo, executionDate: newDate } : todo
+          )
+        };
+      }
+      return p;
+    });
+    setProjects(updatedProjects);
+  };
+
   const iconButtonStyle = {
     background: 'transparent',
     border: 'none',
     cursor: 'pointer',
     fontSize: '16px',
-    color: 'inherit', // ← テーマに合わせて変化
+    color: 'inherit',
     padding: '4px'
   };
 
@@ -86,13 +114,36 @@ function ProjectDetail({ projects, setProjects }) {
       </button>
 
       <h2>📝 {project.title}</h2>
-      <button className="button" onClick={handleAdd}>＋ タスク追加</button>
+
+      {/* タスク入力フォーム */}
+      <div style={{ marginBottom: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <input
+          type="text"
+          placeholder="タスク名"
+          value={newTaskText}
+          onChange={(e) => setNewTaskText(e.target.value)}
+          style={{ padding: '4px', flexGrow: 1 }}
+        />
+        <input
+          type="date"
+          value={newTaskDate}
+          onChange={(e) => setNewTaskDate(e.target.value)}
+          style={{ padding: '4px' }}
+        />
+        <button className="button" onClick={handleAdd}>＋ タスク追加</button>
+      </div>
 
       <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
         {project.todos.map(todo => (
           <li
             key={todo.id}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '8px',
+              flexWrap: 'wrap'
+            }}
             className="task-item"
           >
             <input
@@ -127,6 +178,13 @@ function ProjectDetail({ projects, setProjects }) {
                 {todo.text}
               </span>
             )}
+
+            <input
+              type="date"
+              value={todo.executionDate || ''}
+              onChange={(e) => handleChangeDate(todo.id, e.target.value)}
+              style={{ padding: '4px' }}
+            />
 
             <button onClick={() => handleDelete(todo.id)} style={iconButtonStyle}>🗑</button>
           </li>
